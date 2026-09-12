@@ -1,28 +1,22 @@
 # From Splintered to Centered
 
-The official landing-page project for **From Splintered to Centered: 7 Dimensions for Navigating Your Soul** by Dr. Sanjiv Chopra and Dr. Loren Michaels Harris.
+A eight-scene woodland website for the book by Dr. Sanjiv Chopra and Dr. Loren Michaels Harris.
 
-## Local preview
+## Development
 
-```bash
+```sh
 npm install
-npm run dev
+npm run dev -- --hostname 127.0.0.1
 ```
 
-Open [http://localhost:3000](http://localhost:3000) after the development server starts.
+Open http://127.0.0.1:3000. Stop the development server before running `npm run build`; both commands use `.next/`. Run `npm run start -- --hostname 127.0.0.1` to preview the production build.
 
-## Production check
+## Content and artwork
 
-```bash
-npm run build
-npm run start
-```
+The eight scenes cover the book, its journey, dimensions, authors, Centered Voices, practical reflection, and newsletter invitation. Content lives in `components/Sections.tsx`, with dimension copy, URLs and video configuration in `data/book.ts`.
 
-## Content and media
+The actual cover appears once. The panoramic promotion appears once. The full event lineup has its own section after the practical reading section. The duplicate promotional image is not used.
 
-- Update calls to action, author videos, feature flags, and media paths in `data/book.ts`.
-- Add the approved book cover and author photography under `public/images/` using the filenames documented in `public/images/README.md`.
-- The two welcome-film positions are already reserved in the second section. Add each provider URL to the matching `videoUrl` field in `data/book.ts`.
-- Replace the newsletter placeholder in `components/ClientBits.tsx` when an email provider is selected.
+Generated scenery is optimized into desktop and mobile WebP assets. Exact prompts and generation provenance are recorded in `ART-DIRECTION.md`.
 
-No publication date, ISBN, publisher, pricing, retailer, or preorder details are assumed by the current implementation.
+Welcome films and transcripts are pending. Newsletter submission is a local demonstration: it sends and stores no data. Connect an email provider before opening signup. No release date, price or retailer is assumed.

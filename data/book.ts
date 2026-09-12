@@ -8,7 +8,7 @@ export const siteConfig = {
   soulLibraryEnabled: true,
   crisisResourceCopy: "",
   images: {
-    cover: "/images/book-cover.jpg",
+    cover: "/images/book-cover.png",
     sanjiv: "/images/sanjiv-chopra.jpg",
     loren: "https://lorenmichaelsharris.com/wp-content/uploads/2025/11/DrL1-min-scaled.jpg"
   },

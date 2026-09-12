@@ -1,22 +1,8 @@
 "use client";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 
-export function track(event: string) { if (typeof window !== "undefined") window.dispatchEvent(new CustomEvent("book:analytics", { detail: { event } })); }
+export function Menu(){const [open,setOpen]=useState(false);return <><button className="menu" aria-label="Menu" aria-expanded={open} aria-controls="navigation" onClick={()=>setOpen(!open)}>☰</button><nav id="navigation" className={open?"open":""} aria-label="Primary">{[["The journey","#journey"],["Seven dimensions","#dimensions"],["The authors","#authors"],["Centered Voices","#centered-voices"]].map(([label,href])=><a key={href} href={href} onClick={()=>setOpen(false)}>{label}</a>)}<a className="nav-cta" href="#join" onClick={()=>setOpen(false)}>Stay connected ↗</a></nav></>;}
 
-export function Menu() {
-  const [open, setOpen] = useState(false);
-  const links = [["The Book", "#book"], ["The 7 Dimensions", "#dimensions"], ["The Authors", "#authors"], ["Videos", "#videos"]];
-  return <><button className="menu" aria-expanded={open} aria-controls="navigation" onClick={() => setOpen(!open)}><span /><span /><span /><b className="sr-only">Menu</b></button><nav id="navigation" className={open ? "open" : ""} aria-label="Primary">{links.map(([l,h]) => <a key={h} href={h} onClick={() => setOpen(false)}>{l}</a>)}<a className="nav-cta" href="#join">Join the conversation</a></nav></>;
-}
+export function VideoButton({author,url}:{author:string;url:string}){const dialog=useRef<HTMLDialogElement>(null);const trigger=useRef<HTMLButtonElement>(null);const [open,setOpen]=useState(false);if(!url)return <p className="video-pending"><span aria-hidden="true">▷</span> Welcome film & transcript coming soon</p>;return <><button className="video-link" ref={trigger} onClick={()=>{setOpen(true);dialog.current?.showModal();}}>▷ Watch {author}’s welcome</button><dialog className="guest-dialog" ref={dialog} onClose={()=>{setOpen(false);trigger.current?.focus();}} aria-label={`${author}'s welcome film`}><button className="close" autoFocus onClick={()=>dialog.current?.close()}>Close ×</button>{open&&<iframe src={url} title={`${author}'s welcome film`} allow="autoplay; fullscreen"/>}</dialog></>;}
 
-export function VideoButton({ author, url }: { author: string; url: string }) {
-  const [open, setOpen] = useState(false);
-  useEffect(() => { if (!open) return; const close = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false); addEventListener("keydown", close); return () => removeEventListener("keydown", close); }, [open]);
-  return <>{<button className="play" onClick={() => { if (url) { setOpen(true); track(`author_video_${author}_played`); } }} aria-label={`Play ${author}'s welcome video`} disabled={!url}><span>▶</span>{url ? "Watch welcome" : "Video coming soon"}</button>}{open && <div className="modal" role="dialog" aria-modal="true" aria-label={`${author} welcome video`} onClick={() => setOpen(false)}><div onClick={e => e.stopPropagation()}><button className="close" onClick={() => setOpen(false)}>Close ×</button><iframe src={url} title={`${author} welcome video`} allow="autoplay; fullscreen" /></div></div>}</>;
-}
-
-export function Newsletter() {
-  const [message, setMessage] = useState("");
-  function submit(e: FormEvent) { e.preventDefault(); track("newsletter_submitted"); setMessage("Thank you. Sign-up will open when our mailing service is connected."); }
-  return <form onSubmit={submit}><div className="fields"><label>First name<input name="firstName" autoComplete="given-name" required /></label><label>Email address<input type="email" name="email" autoComplete="email" required /></label><button type="submit">Join the Book Community <span>↗</span></button></div><label className="consent"><input type="checkbox" required /> <span>By subscribing, you agree to receive updates related to the book. You may unsubscribe at any time.</span></label><p className="form-note" aria-live="polite">{message}</p>{/* TODO: Replace placeholder handler with the selected email provider API/action. */}</form>;
-}
+export function Newsletter(){const [message,setMessage]=useState("");function submit(e:FormEvent){e.preventDefault();setMessage("Thank you for your interest. Sign-up will open when our mailing service is connected. Your details have not been submitted.");}return <form onSubmit={submit}><p className="newsletter-status">Newsletter signup is not connected yet. Your details will not be sent or saved.</p><div className="fields"><label>First name<input name="firstName" autoComplete="given-name" required/></label><label>Email address<input name="email" type="email" autoComplete="email" required/></label></div><label className="consent"><input type="checkbox" required/><span>I would like to receive book updates when signup opens.</span></label><button className="button" type="submit">Join the conversation <span>↗</span></button><p className="form-note" role="status">{message}</p></form>;}
