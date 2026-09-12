@@ -7,10 +7,14 @@ export const siteConfig = {
   contactUrl: "mailto:hello@fromsplinteredtocentered.com",
   soulLibraryEnabled: true,
   crisisResourceCopy: "",
-  images: { cover: "/images/book-cover.jpg", sanjiv: "/images/sanjiv-chopra.jpg", loren: "/images/loren-michaels-harris.jpg" },
+  images: {
+    cover: "/images/book-cover.jpg",
+    sanjiv: "/images/sanjiv-chopra.jpg",
+    loren: "https://lorenmichaelsharris.com/wp-content/uploads/2025/11/DrL1-min-scaled.jpg"
+  },
   authors: {
     sanjiv: { name: "Dr. Sanjiv Chopra", descriptor: "Physician. Teacher. Seeker.", videoUrl: "", posterImage: "" },
-    loren: { name: "Dr. Loren Michaels Harris", descriptor: "Storyteller. Survivor. Seeker.", videoUrl: "", posterImage: "" }
+    loren: { name: "Dr. Loren Michaels Harris", descriptor: "Storyteller. Survivor. Seeker.", videoUrl: "", posterImage: "https://lorenmichaelsharris.com/wp-content/uploads/2025/11/DrL1-min-scaled.jpg" }
   }
 };
 
