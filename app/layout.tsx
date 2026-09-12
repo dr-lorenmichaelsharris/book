@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { siteConfig } from "@/data/book";
-
-export const metadata: Metadata = { metadataBase: new URL(siteConfig.canonicalUrl), title: "From Splintered to Centered | Dr. Sanjiv Chopra & Dr. Loren Michaels Harris", description: "Discover From Splintered to Centered: 7 Dimensions for Navigating Your Soul, a new book exploring purpose, connection, healing, service, love, legacy, and the journey toward a more centered life.", alternates: { canonical: "/" }, openGraph: { title: "From Splintered to Centered", description: "7 Dimensions for Navigating Your Soul", type: "book", url: "/" }, twitter: { card: "summary_large_image", title: "From Splintered to Centered", description: "7 Dimensions for Navigating Your Soul" } };
-const structuredData = { "@context": "https://schema.org", "@type": "Book", name: "From Splintered to Centered", alternateName: "7 Dimensions for Navigating Your Soul", author: [{ "@type": "Person", name: "Dr. Sanjiv Chopra" }, { "@type": "Person", name: "Dr. Loren Michaels Harris" }] };
-export default function RootLayout({ children }: { children: React.ReactNode }) { return <html lang="en"><body>{children}<script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}} /></body></html> }
+import type { Metadata } from 'next';
+import './globals.css';
+import { siteConfig } from '@/data/book';
+import { editorial } from '@/data/editorial';
+export const metadata:Metadata={metadataBase:new URL(siteConfig.canonicalUrl),title:'From Splintered to Centered | Dr. Sanjiv Chopra & Dr. Loren Michaels Harris',description:'Discover From Splintered to Centered: 7 Dimensions for Navigating Your Soul, a new book by Dr. Sanjiv Chopra and Dr. Loren Michaels Harris exploring purpose, connection, healing, service, love, legacy, and the journey toward a more centered life.',alternates:{canonical:'/'},openGraph:{title:editorial.title,description:editorial.subtitle,type:'book',url:'/',images:[{url:'/images/book-cover.png',width:700,height:1050,alt:editorial.title}]},twitter:{card:'summary_large_image',title:editorial.title,description:editorial.subtitle,images:['/images/book-cover.png']}};
+const structuredData={'@context':'https://schema.org','@graph':[{'@type':'Book','@id':siteConfig.canonicalUrl+'/#book',name:editorial.title,alternateName:editorial.subtitle,image:siteConfig.canonicalUrl+'/images/book-cover.png',author:editorial.authors.map(a=>({'@id':siteConfig.canonicalUrl+'/#'+a.id}))},...editorial.authors.map(a=>({'@type':'Person','@id':siteConfig.canonicalUrl+'/#'+a.id,name:a.name}))]};
+export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en"><body>{children}<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(structuredData).replace(/</g,'\\u003c')}}/></body></html>;}
