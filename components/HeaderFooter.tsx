@@ -1,0 +1,6 @@
+import { siteConfig } from "@/data/book";
+import { Mark } from "./Sections";
+import { Menu } from "./ClientBits";
+
+export function Header() { return <header className="site-header"><a href="#book" className="wordmark"><Mark/><span>From Splintered<br/><i>to</i> Centered</span></a><Menu/></header> }
+export function Footer() { return <footer className="footer"><div className="footer-brand"><Mark light/><h2>From Splintered<br/><i>to</i> Centered</h2><p>7 Dimensions for Navigating Your Soul</p><p>Dr. Sanjiv Chopra &amp;<br/>Dr. Loren Michaels Harris</p></div><div className="footer-links"><div>{[["The Book","#book"],["Seven Dimensions","#dimensions"],["The Authors","#authors"],["Videos","#videos"]].map(x=><a key={x[0]} href={x[1]}>{x[0]}</a>)}</div><div><a href="#library">Soul Library</a><a href="#join">Updates</a><a href={siteConfig.contactUrl}>Contact</a><a href="#privacy">Privacy</a></div></div><div className="disclaimer" id="privacy"><p>This book and website are intended for educational and inspirational purposes and are not substitutes for individualized medical, psychological, psychiatric, or other professional care.</p>{siteConfig.crisisResourceCopy && <p>{siteConfig.crisisResourceCopy}</p>}<p>© {new Date().getFullYear()} From Splintered to Centered. All rights reserved.</p></div></footer> }
