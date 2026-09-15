@@ -10,11 +10,11 @@ export const siteConfig = {
   images: {
     cover: "/images/book-cover.png",
     sanjiv: "/images/sanjiv-chopra.jpg",
-    loren: "https://lorenmichaelsharris.com/wp-content/uploads/2025/11/DrL1-min-scaled.jpg"
+    loren: "/images/loren-michaels-harris.jpg"
   },
   authors: {
     sanjiv: { name: "Dr. Sanjiv Chopra", descriptor: "Physician. Teacher. Seeker.", videoUrl: "", posterImage: "" },
-    loren: { name: "Dr. Loren Michaels Harris", descriptor: "Storyteller. Survivor. Seeker.", videoUrl: "", posterImage: "https://lorenmichaelsharris.com/wp-content/uploads/2025/11/DrL1-min-scaled.jpg" }
+    loren: { name: "Dr. Loren Michaels Harris", descriptor: "Storyteller. Survivor. Seeker.", videoUrl: "", posterImage: "/images/loren-michaels-harris.jpg" }
   }
 };
 
