@@ -2,8 +2,8 @@ export type VerificationStatus = "verified" | "author-story" | "verify-before-pu
 
 export const siteConfig = {
   canonicalUrl: "https://fromsplinteredtocentered.com",
-  primaryCta: { label: "Join the Book Community", href: "#join" },
-  preorderUrl: "",
+  primaryCta: { label: "Preorder the book", href: "/preorder" },
+  preorderUrl: "/preorder",
   contactUrl: "mailto:hello@fromsplinteredtocentered.com",
   soulLibraryEnabled: true,
   crisisResourceCopy: "",

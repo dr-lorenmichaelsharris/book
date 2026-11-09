@@ -19,4 +19,4 @@ The actual cover appears once. The panoramic promotion appears once. The full ev
 
 Generated scenery is optimized into desktop and mobile WebP assets. Exact prompts and generation provenance are recorded in `ART-DIRECTION.md`.
 
-Welcome films and transcripts are pending. Newsletter submission is a local demonstration: it sends and stores no data. Connect an email provider before opening signup. No release date, price or retailer is assumed.
+Welcome films and transcripts are pending. The preorder form emails requests to the book team and syncs them to Brevo when its server-side configuration is present. Book-update marketing permission is separate and uses Brevo double opt-in. See [Brevo setup](docs/BREVO-SETUP.md) before deploying the integration. No release date, price or retailer is assumed.

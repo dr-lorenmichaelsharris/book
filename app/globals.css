@@ -71,3 +71,53 @@ p{overflow-wrap:break-word}
   .reflection summary{gap:16px}
   .footer nav{justify-content:flex-start}
 }
+
+/* Dedicated preorder page */
+.preorder-page{min-height:100svh;padding:0 6vw;background:radial-gradient(ellipse at 18% 34%,#234138 0,transparent 40%),radial-gradient(ellipse at 90% 0,#16343a 0,transparent 43%),var(--navy)}
+.preorder-header,.preorder-footer{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.preorder-header{min-height:100px;border-bottom:1px solid #ecc77935}
+.preorder-home-link,.preorder-back-link{display:inline-flex;align-items:center;gap:12px;min-height:44px;color:#e6d5a8;text-decoration:none}
+.preorder-home-link:hover,.preorder-back-link:hover,.preorder-footer a:hover{text-decoration:underline}
+.preorder-layout{max-width:1150px;min-height:calc(100svh - 190px);margin:0 auto;padding:70px 0 85px;display:grid;grid-template-columns:minmax(210px,.72fr) minmax(0,1.28fr);align-items:start;gap:clamp(40px,8vw,110px)}
+.preorder-cover{width:min(100%,335px);justify-self:center;margin-top:25px}
+.preorder-cover img{display:block;width:100%;height:auto;border:1px solid #b59d60;box-shadow:16px 25px 45px #0007}
+.preorder-cover figcaption{font-family:var(--serif);font-size:19px;line-height:1.35;text-align:center;color:#e0d0a6;margin-top:19px}
+.preorder-copy{max-width:760px}
+.preorder-copy>.eyebrow{margin:0 0 16px}
+.preorder-copy h1{font-size:clamp(3.8rem,7.3vw,6.6rem);line-height:.94;color:#f3dfac;text-shadow:0 3px 25px #0007}
+.preorder-subtitle{font-family:var(--serif);font-size:clamp(1.5rem,2.7vw,2.1rem);font-style:italic;color:#efdaa9;margin-top:22px}
+.preorder-byline{margin-top:12px;color:#d9d8c0;font-size:16px;letter-spacing:.04em}
+.preorder-description{max-width:670px;margin-top:23px!important;color:#d8dfd1;font-size:18px}
+.preorder-request{margin-top:34px;padding:25px clamp(20px,3.5vw,38px);background:#092229eF;border:1px solid #a69b70;border-radius:8px;box-shadow:0 18px 50px #0003}
+.preorder-request h2{font-size:clamp(2.3rem,4vw,3.2rem);color:#f1dfb2}
+.preorder-request>p{margin-top:12px;color:#cbd3bf;font-size:16px;line-height:1.6}
+.preorder-page .preorder-form{margin-top:22px}
+.preorder-form .newsletter-status{color:#d2d9c9}
+.preorder-form .updates-consent{margin-top:8px}
+.preorder-form .form-note{font-size:15px}
+.preorder-back-link{margin-top:22px}
+.preorder-footer{min-height:90px;border-top:1px solid #ecc77935;color:#aebcaf;font-size:14px}
+.preorder-footer a{color:#e6d5a8;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.preorder-confirmed{min-height:100svh;padding:32px 7vw;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 35%,#234138 0,transparent 55%),var(--navy)}
+.preorder-confirmed>.wordmark{align-self:flex-start;position:absolute;top:30px;left:7vw}
+.preorder-confirmed section{width:min(100%,660px);text-align:center}
+.preorder-confirmed h1{font-size:clamp(3rem,7vw,5.2rem);color:#f3dfac}
+.preorder-confirmed section>p:not(.eyebrow){max-width:560px;margin:25px auto;color:#d8dfd1}
+.preorder-confirmed .button{margin-top:16px}
+.preorder-hero-cta{margin-left:14px}
+@media(max-width:760px){
+  .preorder-page{padding-inline:6vw}
+  .preorder-header{min-height:82px}
+  .preorder-header .wordmark,.preorder-header .wordmark em{font-size:15px}
+  .preorder-layout{min-height:0;padding:42px 0 58px;grid-template-columns:minmax(0,1fr);gap:38px}
+  .preorder-cover{width:min(58vw,260px);margin-top:0}
+  .preorder-copy h1{font-size:clamp(3rem,12vw,4.4rem)}
+  .preorder-description{font-size:17px}
+  .preorder-request{margin-top:27px;padding:22px 18px}
+  .preorder-page .fields{grid-template-columns:minmax(0,1fr)}
+  .preorder-page .preorder-form .button{width:100%}
+  .preorder-footer{min-height:75px;align-items:flex-start;flex-direction:column;justify-content:center;gap:4px;padding:12px 0}
+  .preorder-hero-cta{margin-left:0;margin-top:12px}
+  .preorder-confirmed>.wordmark{top:20px;left:6vw}
+  .preorder-confirmed section{margin-top:40px}
+}
