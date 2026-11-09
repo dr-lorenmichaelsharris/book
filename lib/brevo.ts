@@ -30,7 +30,7 @@ function requiredInteger(name: string): number {
 }
 
 function contactAttributes(contact: PreorderContact): Record<string, string | number | boolean> {
-  const attributes: Record<string, string | number | boolean> = { FNAME: contact.name };
+  const attributes: Record<string, string | number | boolean> = { FIRSTNAME: contact.name };
   const quantityAttribute = process.env.BREVO_QUANTITY_ATTRIBUTE;
   const sourceAttribute = process.env.BREVO_SOURCE_ATTRIBUTE;
 
