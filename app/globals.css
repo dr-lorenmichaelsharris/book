@@ -121,3 +121,18 @@ p{overflow-wrap:break-word}
   .preorder-confirmed>.wordmark{top:20px;left:6vw}
   .preorder-confirmed section{margin-top:40px}
 }
+/* Form-first preorder hero. */
+.preorder-layout{padding:32px 0 46px;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(30px,5vw,70px);min-height:0}
+.preorder-copy h1{font-size:clamp(3rem,4.5vw,4.5rem)}
+.preorder-subtitle{font-size:1.65rem;margin-top:16px}
+.preorder-byline{font-size:15px;line-height:1.5}
+.preorder-cover{width:200px;margin:24px auto 0}
+.preorder-cover figcaption{font-size:16px}
+.preorder-request{margin-top:0;padding:24px 28px}
+.preorder-request h2{font-size:2.5rem}
+.preorder-page .preorder-form{margin-top:16px}
+.preorder-page .newsletter-status{margin-bottom:18px}
+.preorder-details{max-width:1150px;margin:0 auto;padding:42px 0 55px;border-top:1px solid #ecc77935}
+.preorder-details h2{font-size:clamp(2.5rem,4vw,3.5rem);margin-bottom:20px}
+.preorder-details>p{max-width:760px;color:#d8dfd1}
+@media(max-width:760px){.preorder-layout{padding-top:26px;grid-template-columns:minmax(0,1fr);gap:24px}.preorder-copy h1{font-size:clamp(2.7rem,10vw,4rem)}.preorder-copy .preorder-cover{display:none}.preorder-request{padding:22px 18px}.preorder-subtitle{font-size:1.4rem}.preorder-details{padding:32px 0 42px}}

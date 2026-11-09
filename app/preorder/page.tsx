@@ -28,24 +28,27 @@ export default function PreorderPage() {
     </header>
 
     <section className="preorder-layout" aria-labelledby="preorder-title">
-      <figure className="preorder-cover">
-        <img src={siteConfig.images.cover} alt="Book cover: From Splintered to Centered — 7 Dimensions for Navigating Your Soul, by Dr. Sanjiv Chopra and Dr. Loren Michaels Harris" width="700" height="1050" fetchPriority="high" />
-        <figcaption>Two journeys. One invitation to come back to center.</figcaption>
-      </figure>
-
       <div className="preorder-copy">
         <p className="eyebrow">A journey back to yourself</p>
         <h1 id="preorder-title">From Splintered<br/><em>to Centered</em></h1>
         <p className="preorder-subtitle">7 Dimensions for Navigating Your Soul</p>
         <p className="preorder-byline">By Dr. Sanjiv Chopra and Dr. Loren Michaels Harris</p>
-        <p className="preorder-description">Beyond achievement. Beneath the noise. This book explores purpose, connection, healing, service, love, and legacy—and invites you toward a more meaningful life.</p>
+      <figure className="preorder-cover">
+        <img src={siteConfig.images.cover} alt="Book cover: From Splintered to Centered — 7 Dimensions for Navigating Your Soul, by Dr. Sanjiv Chopra and Dr. Loren Michaels Harris" width="700" height="1050" fetchPriority="high" />
+        <figcaption>Two journeys. One invitation to come back to center.</figcaption>
+      </figure>
+      </div>
         <div className="preorder-request">
           <h2>Request your copy</h2>
-          <p>Share your details and we’ll follow up by email with pricing and availability. This request does not collect payment or confirm a paid order.</p>
           <PreorderForm />
         </div>
-        <Link className="preorder-back-link" href="/">Return to the book website</Link>
-      </div>
+    </section>
+
+    <section className="preorder-details" aria-labelledby="preorder-about">
+      <h2 id="preorder-about">A journey back to yourself</h2>
+      <p>Beyond achievement. Beneath the noise. This book explores purpose, connection, healing, service, love, and legacy—and invites you toward a more meaningful life.</p>
+      <p>Share your details above and we’ll follow up by email with pricing and availability. Your request does not confirm a paid order.</p>
+      <Link className="preorder-back-link" href="/">Explore the book and meet the authors</Link>
     </section>
 
     <footer className="preorder-footer">
