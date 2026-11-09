@@ -74,6 +74,14 @@ export async function syncPreorderToBrevo(contact: PreorderContact): Promise<Bre
   if (!apiKey) throw new BrevoSyncError("Brevo API is not configured", false);
   const preorderListId = requiredInteger("BREVO_PREORDER_LIST_ID");
   const attributes = contactAttributes(contact);
+  let existingContact = true;
+  if (!contact.updatesConsent) {
+    const existing = await fetch(`https://api.brevo.com/v3/contacts/${encodeURIComponent(contact.email)}`, {
+      headers: { "api-key": apiKey }, cache: "no-store", signal: AbortSignal.timeout(8_000),
+    });
+    if (existing.status === 404) existingContact = false;
+    else if (!existing.ok) throw new BrevoSyncError("Could not check existing contact preferences", false);
+  }
 
   try {
     await brevoRequest("contacts", {
@@ -81,6 +89,7 @@ export async function syncPreorderToBrevo(contact: PreorderContact): Promise<Bre
       attributes,
       listIds: [preorderListId],
       updateEnabled: true,
+      ...(!contact.updatesConsent && !existingContact ? { emailBlacklisted: true } : {}),
     });
   } catch (error) {
     if (error instanceof BrevoSyncError) throw error;
