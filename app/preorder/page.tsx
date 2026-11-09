@@ -48,7 +48,7 @@ export default function PreorderPage() {
       <h2 id="preorder-about">A journey back to yourself</h2>
       <p>Beyond achievement. Beneath the noise. This book explores purpose, connection, healing, service, love, and legacy—and invites you toward a more meaningful life.</p>
       <p>Share your details above and we’ll follow up by email with pricing and availability. Your request does not confirm a paid order.</p>
-      <Link className="preorder-back-link" href="/">Explore the book and meet the authors</Link>
+      <Link className="preorder-back-link" href="/#journey">Explore the book and meet the authors</Link>
     </section>
 
     <footer className="preorder-footer">
