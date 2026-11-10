@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Book Updates Confirmed | From Splintered to Centered",
+  title: "Email Updates Confirmed | From Splintered to Centered",
   robots: { index: false, follow: false },
 };
 
@@ -15,7 +15,7 @@ export default function PreorderConfirmedPage() {
     <section aria-labelledby="confirmation-title">
       <p className="eyebrow">You’re connected</p>
       <h1 id="confirmation-title">Thank you for confirming.</h1>
-      <p>You’ll receive occasional email updates about <em>From Splintered to Centered</em> and its launch. Your preorder request remains separate; no payment has been collected.</p>
+      <p>You’ll receive occasional email updates from Dr. Loren about his work, reflections, conversations, and book news. Your preorder request remains separate; no payment has been collected.</p>
       <Link className="button" href="/">Return to the book website <span aria-hidden="true">↗</span></Link>
     </section>
   </main>;

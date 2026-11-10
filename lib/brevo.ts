@@ -99,9 +99,12 @@ export async function syncPreorderToBrevo(contact: PreorderContact): Promise<Bre
   if (!contact.updatesConsent) return { preorderSaved: true, updatesConfirmationSent: false };
 
   try {
-    const updatesListId = requiredInteger("BREVO_BOOK_UPDATES_LIST_ID");
+    const configuredUpdatesListId = process.env.BREVO_LOREN_UPDATES_LIST_ID;
+    const updatesListId = configuredUpdatesListId
+      ? requiredInteger("BREVO_LOREN_UPDATES_LIST_ID")
+      : 2; // Dr. Loren General Updates in the connected production Brevo account.
     if (updatesListId === preorderListId) {
-      throw new BrevoSyncError("Preorder and book updates lists must be different", true);
+      throw new BrevoSyncError("Preorder and Dr. Loren updates lists must be different", true);
     }
     const templateId = requiredInteger("BREVO_DOI_TEMPLATE_ID");
     await brevoRequest("contacts/doubleOptinConfirmation", {

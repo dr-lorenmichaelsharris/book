@@ -67,7 +67,7 @@ export async function POST(request: Request) {
       to: mailbox,
       replyTo: { name: name.trim(), address: email },
       subject: `New preorder request${preorderSaved ? "" : " — Brevo sync needs attention"} — From Splintered to Centered`,
-      text: `Name: ${name.trim()}\nEmail: ${email}\nCopies requested: ${quantity}\nSource: ${source}\n\nThe visitor agreed to email contact about this request.\nBook updates opt-in requested: ${updatesConsent ? "Yes" : "No"}\nBrevo preorder list saved: ${preorderSaved ? "Yes" : "No"}\nBrevo updates confirmation: ${updatesConsent ? (updatesConfirmationSent ? "Sent" : "Not sent") : "Not requested"}${brevoFailure ? `\nBrevo issue: ${brevoFailure}\nPlease add or review this request in Brevo.` : ""}\n\nNo payment collected. Pricing and availability require confirmation.`,
+      text: `Name: ${name.trim()}\nEmail: ${email}\nCopies requested: ${quantity}\nSource: ${source}\n\nThe visitor agreed to email contact about this request.\nDr. Loren updates opt-in requested: ${updatesConsent ? "Yes" : "No"}\nBrevo preorder list saved: ${preorderSaved ? "Yes" : "No"}\nDr. Loren updates confirmation: ${updatesConsent ? (updatesConfirmationSent ? "Sent" : "Not sent") : "Not requested"}${brevoFailure ? `\nBrevo issue: ${brevoFailure}\nPlease add or review this request in Brevo.` : ""}\n\nNo payment collected. Pricing and availability require confirmation.`,
     });
     return Response.json({ ok: true, preorderSaved, updatesConsent, updatesConfirmationSent });
   } catch {

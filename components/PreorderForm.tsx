@@ -34,12 +34,12 @@ export function PreorderForm({ fallbackSource = "direct" }: { fallbackSource?: s
       }
       if (!result.preorderSaved) {
         setMessage(result.updatesConsent
-          ? "Your preorder request was received, but we couldn’t complete your book updates signup. The preorder team has been alerted; please email hello@fromsplinteredtocentered.com if you need help."
+          ? "Your preorder request was received, but we couldn’t complete your signup for Dr. Loren’s email updates. The preorder team has been alerted; please email hello@fromsplinteredtocentered.com if you need help."
           : "Your preorder request was received. The preorder team has been alerted that the reader list needs attention.");
       } else if (result.updatesConsent && !result.updatesConfirmationSent) {
-        setMessage("Your preorder request was received, but we couldn’t send the book updates confirmation email. Please email hello@fromsplinteredtocentered.com if you’d like to join the updates list.");
+        setMessage("Your preorder request was received, but we couldn’t send the confirmation email for Dr. Loren’s updates. Please email hello@fromsplinteredtocentered.com if you’d like to join his list.");
       } else if (result.updatesConfirmationSent) {
-        setMessage("Your preorder request was received. Check your inbox for a separate email to confirm book updates. No payment is collected.");
+        setMessage("Your preorder request was received. Check your inbox for a separate email to confirm Dr. Loren’s occasional email updates. No payment is collected.");
       } else {
         setMessage("Your preorder request has been received. We’ll email you with pricing and availability. No payment is collected.");
       }
@@ -58,7 +58,7 @@ export function PreorderForm({ fallbackSource = "direct" }: { fallbackSource?: s
     </div>
     <div hidden aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
     <label className="consent"><input name="consent" type="checkbox" required /><span>Please contact me by email about this preorder request.</span></label>
-    <label className="consent updates-consent"><input name="updatesConsent" type="checkbox" /><span>I’d also like occasional email updates about the book and its launch. I can unsubscribe at any time.</span></label>
+    <label className="consent updates-consent"><input name="updatesConsent" type="checkbox" /><span>I’d also like occasional email updates from Dr. Loren about his work, reflections, conversations, and book news. I can unsubscribe at any time.</span></label>
     <button className="button" type="submit" disabled={pending}>{pending ? "Sending…" : "Request a preorder"}<span aria-hidden="true">↗</span></button>
     <p className="form-note" role="status" aria-live="polite">{message}</p>
   </form>;
