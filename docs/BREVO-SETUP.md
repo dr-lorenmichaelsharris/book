@@ -25,7 +25,7 @@ BREVO_SOURCE_ATTRIBUTE=PREORDER_SOURCE
 
 The form stores all requests in the preorder list and emails the book team. Each valid submission also results in one requester email, regardless of the number of copies:
 
-- If the visitor leaves the optional updates checkbox unchecked, the site sends a receipt through SMTP. It includes the requested quantity, says no payment was collected, and explains that the team will follow up with pricing and availability.
+- If the visitor leaves the optional updates checkbox unchecked, the site sends a branded HTML receipt through SMTP with a plain-text fallback. It uses the book cover and site colors, includes the requested quantity, says no payment was taken, and explains that the team will follow up with pricing and availability.
 - If the visitor checks the box, Brevo sends the DOI template as the receipt. It includes the same request details plus a separate button to confirm occasional updates from Dr. Loren. The contact is not eligible for that list's campaigns until they click the button. The confirmation link returns to `/preorder/confirmed`.
 - If Brevo definitively rejects the DOI request, the site sends a receipt-only SMTP fallback and reports that updates were not confirmed. If the DOI request times out with an unknown outcome, it does not send a second email that could duplicate one Brevo accepted; the page asks the requester to check their inbox and spam folder.
 
