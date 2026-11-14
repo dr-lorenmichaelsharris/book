@@ -13,11 +13,13 @@ export type BrevoSyncResult = {
 
 export class BrevoSyncError extends Error {
   readonly preorderSaved: boolean;
+  readonly updatesEmailOutcome: "not-sent" | "unknown";
 
-  constructor(message: string, preorderSaved: boolean) {
+  constructor(message: string, preorderSaved: boolean, updatesEmailOutcome: "not-sent" | "unknown" = "not-sent") {
     super(message);
     this.name = "BrevoSyncError";
     this.preorderSaved = preorderSaved;
+    this.updatesEmailOutcome = updatesEmailOutcome;
   }
 }
 
@@ -61,7 +63,8 @@ async function brevoRequest(path: string, body: object): Promise<void> {
       signal: AbortSignal.timeout(8_000),
     });
   } catch {
-    throw new BrevoSyncError("Brevo API request failed", false);
+    const isDoiRequest = path === "contacts/doubleOptinConfirmation";
+    throw new BrevoSyncError("Brevo API request failed", false, isDoiRequest ? "unknown" : "not-sent");
   }
 
   if (!response.ok) {
@@ -118,6 +121,7 @@ export async function syncPreorderToBrevo(contact: PreorderContact): Promise<Bre
     throw new BrevoSyncError(
       error instanceof BrevoSyncError ? error.message : "Could not send Brevo confirmation",
       true,
+      error instanceof BrevoSyncError ? error.updatesEmailOutcome : "not-sent",
     );
   }
 

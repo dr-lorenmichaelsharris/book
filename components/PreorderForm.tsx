@@ -27,23 +27,38 @@ export function PreorderForm({ fallbackSource = "direct" }: { fallbackSource?: s
     }) });
       const result = await response.json();
       if (!response.ok) {
-        setMessage(result.preorderSaved
-          ? "Your request may already be recorded, but we couldn’t finish sending it to the preorder team. Please email hello@fromsplinteredtocentered.com before trying again."
-          : "We couldn’t send your request. Please try again or email hello@fromsplinteredtocentered.com.");
+        if (result.updatesConfirmationOutcomeUnknown) {
+          setMessage("Your request may have been recorded, but the email service didn’t confirm whether it sent your message. Please check your inbox and spam folder before trying again, or contact hello@fromsplinteredtocentered.com.");
+        } else if (result.requesterReceiptSent) {
+          form.reset();
+          setMessage("We emailed your receipt, but couldn’t confirm that the request was recorded for the book team. Please email hello@fromsplinteredtocentered.com before trying again.");
+        } else {
+          setMessage(result.preorderSaved
+            ? "Your request may already be recorded, but we couldn’t send your receipt email. Please email hello@fromsplinteredtocentered.com before trying again."
+            : "We couldn’t confirm that your request was received. Please try again or email hello@fromsplinteredtocentered.com.");
+        }
         return;
       }
-      if (!result.preorderSaved) {
-        setMessage(result.updatesConsent
-          ? "Your preorder request was received, but we couldn’t complete your signup for Dr. Loren’s email updates. The preorder team has been alerted; please email hello@fromsplinteredtocentered.com if you need help."
-          : "Your preorder request was received. The preorder team has been alerted that the reader list needs attention.");
-      } else if (result.updatesConsent && !result.updatesConfirmationSent) {
-        setMessage("Your preorder request was received, but we couldn’t send the confirmation email for Dr. Loren’s updates. Please email hello@fromsplinteredtocentered.com if you’d like to join his list.");
-      } else if (result.updatesConfirmationSent) {
-        setMessage("Your preorder request was received. Check your inbox for a separate email to confirm Dr. Loren’s occasional email updates. No payment is collected.");
-      } else {
-        setMessage("Your preorder request has been received. We’ll email you with pricing and availability. No payment is collected.");
-      }
       form.reset();
+      if (result.updatesConfirmationOutcomeUnknown) {
+        setMessage("Your request was recorded. We attempted one email with your receipt and the updates confirmation, but the email service didn’t confirm whether it went out. Please check your inbox and spam folder before contacting us.");
+      } else if (!result.requesterReceiptSent) {
+        setMessage(result.teamNotificationSent
+          ? result.updatesConsent
+            ? "The book team received your request, but we couldn’t email your receipt or updates confirmation. You aren’t subscribed to Dr. Loren’s updates. Please email hello@fromsplinteredtocentered.com if you need help."
+            : "The book team received your request, but we couldn’t email your receipt. Please email hello@fromsplinteredtocentered.com if you need a copy."
+          : result.updatesConsent
+            ? "Your request was saved, but we couldn’t email your receipt or updates confirmation. You aren’t subscribed to Dr. Loren’s updates. Please email hello@fromsplinteredtocentered.com."
+            : "Your request was saved, but we couldn’t email your receipt or alert the book team. Please email hello@fromsplinteredtocentered.com.");
+      } else if (result.updatesConsent && !result.updatesConfirmationSent) {
+        setMessage("Your request receipt is on its way. We couldn’t send the link to confirm Dr. Loren’s updates, so you aren’t subscribed yet. Please email hello@fromsplinteredtocentered.com if you’d like help.");
+      } else if (result.updatesConfirmationSent) {
+        setMessage("Your request receipt is on its way in one email. It also has a separate button to confirm Dr. Loren’s occasional updates. No payment was collected.");
+      } else if (!result.preorderSaved || !result.teamNotificationSent) {
+        setMessage("Your request receipt is on its way, but the book team’s reader list or notification needs attention. Please email hello@fromsplinteredtocentered.com if you need help.");
+      } else {
+        setMessage("Your request receipt is on its way. The email confirms the requested copies; no payment was collected. Our team will follow up with pricing and availability.");
+      }
     } catch {
       setMessage("We couldn’t send your request. Please try again or email hello@fromsplinteredtocentered.com.");
     } finally { setPending(false); }

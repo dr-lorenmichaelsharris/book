@@ -23,9 +23,15 @@ BREVO_SOURCE_ATTRIBUTE=PREORDER_SOURCE
 
 `BREVO_QUANTITY_ATTRIBUTE` and `BREVO_SOURCE_ATTRIBUTE` are optional. If configured, create matching Brevo contact attributes first (Number for quantity, Text for source). The site uses these attributes to retain request quantity and whether the visitor arrived from the main site, Dr. Loren's site, or Dr. Sanjiv's site.
 
-The form stores all requests in the preorder list. Its separate, optional checkbox asks whether the visitor wants occasional email updates from Dr. Loren. If checked, it triggers a double opt-in to the Dr. Loren General Updates list (#2); the contact is not eligible for that list's campaigns until they confirm. The confirmation link returns to `/preorder/confirmed`.
+The form stores all requests in the preorder list and emails the book team. Each valid submission also results in one requester email, regardless of the number of copies:
 
-If Brevo is unavailable, the existing email request flow still receives the preorder request. The visitor sees a notice when list sync or the updates confirmation could not be completed, and the notification email tells the preorder team to review Brevo.
+- If the visitor leaves the optional updates checkbox unchecked, the site sends a receipt through SMTP. It includes the requested quantity, says no payment was collected, and explains that the team will follow up with pricing and availability.
+- If the visitor checks the box, Brevo sends the DOI template as the receipt. It includes the same request details plus a separate button to confirm occasional updates from Dr. Loren. The contact is not eligible for that list's campaigns until they click the button. The confirmation link returns to `/preorder/confirmed`.
+- If Brevo definitively rejects the DOI request, the site sends a receipt-only SMTP fallback and reports that updates were not confirmed. If the DOI request times out with an unknown outcome, it does not send a second email that could duplicate one Brevo accepted; the page asks the requester to check their inbox and spam folder.
+
+The DOI template uses the `PREORDER_QUANTITY` contact attribute when configured. `BREVO_QUANTITY_ATTRIBUTE` must match that attribute name for quantity to appear in the combined email.
+
+If Brevo is unavailable before sending the DOI email, the receipt-only SMTP flow still runs and the notification email tells the preorder team to review Brevo. If requester email or team notification fails, the site reports the known delivery/recording status instead of claiming success.
 
 ## Website links for source attribution
 
